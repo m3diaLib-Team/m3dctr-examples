@@ -12,6 +12,8 @@ before_install:
   - wget https://github.com/StuntHacks/m3diaLib/releases/download/v0.1.2-beta/build-v0.1.2-beta.zip -O build.zip
   - mkdir m3d-build
   - sudo apt install unzip -y
+  - sudo apt install libstdc++6 -y
+  - sudo apt install imagemagick -y
   - unzip build.zip -d m3d-build/
   - cd m3d-build/
   - sudo make install
