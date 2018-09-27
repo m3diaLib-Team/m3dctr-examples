@@ -75,7 +75,7 @@ int main() {
 
     // main loop
     while (app.isRunning()) {
-        // press B to return to the homebrew menu
+        // press Start to return to the homebrew menu
         if (m3d::buttons::buttonPressed(m3d::buttons::Button::Start)) app.exit();
 
         if (m3d::buttons::buttonPressed(m3d::buttons::Button::Up)) {
