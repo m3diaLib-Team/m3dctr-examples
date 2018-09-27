@@ -41,9 +41,6 @@ BUILD		:=	build
 SOURCES		:=	$(sort $(dir $(wildcard source/*/)))
 DATA		:=	data
 INCLUDES	:= $(sort $(dir $(wildcard includes/*/)))
-GRAPHICS	:=	assets/gfx
-ROMFS		:=	assets
-GFXBUILD	:=	$(ROMFS)/gfx
 
 APP_TITLE		:=	Your awesome Homebrew $(VERSTRING)
 APP_DESCRIPTION	:=	Some awesome software that does something
