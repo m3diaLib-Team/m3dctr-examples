@@ -1,3 +1,3 @@
-# core/led-patterns
+# input/software-keyboard
 
-This example displays multiple patterns on the notification-led
+This example shows multiple configurations for the software keyboard
