@@ -5,7 +5,7 @@ void validator(m3d::SoftwareKeyboard::KeyboardEvent& t_evt) {
     if (t_evt.getText() == "lenny") {
         t_evt.error("What did you expect? I'm not fincs.");
     } else if (t_evt.getText() == "brick") {
-        t_evt.close("I think you're confusing the examples");
+        t_evt.close("I think you're confusing the\nexamples.");
     } else {
         t_evt.valid();
     }
@@ -18,9 +18,14 @@ int main() {
     consoleInit(GFX_BOTTOM, NULL);
 
     m3d::SoftwareKeyboard keyboardNormal, keyboardNumpad, keyboardValidating, passwordKeyboard;
+
+    keyboardNormal.setHintText("Type something");
+
     keyboardNumpad.setKeyboardType(m3d::SoftwareKeyboard::KeyboardType::Numpad);
     keyboardNumpad.setFixedLength(5);
+
     keyboardValidating.setValidator(validator);
+
     passwordKeyboard.setPasswordMode(m3d::SoftwareKeyboard::PasswordMode::Delay);
 
     printf("Press Up to launch a normal keyboard\n");
