@@ -14,6 +14,7 @@ fi
 if [ "$TRAVIS_BRANCH" = "develop" ]; then
     git clone https://github.com/StuntHacks/m3diaLib
     cd m3diaLib
+    git checkout develop
     make -C m3dialib/
     sudo make -C m3dialib/ install
     cd ..
