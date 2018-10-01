@@ -17,8 +17,8 @@ int main() {
         if (m3d::Input::buttonPressed(m3d::Input::Button::B)) app.exit();
 
         printAt(0, 1, "Circlepad position: "
-                "{X: " + std::to_string(m3d::circlepad::getXPosition()) +
-                ", Y: " + std::to_string(m3d::circlepad::getYPosition()) + "}");
+                "{X: " + std::to_string(m3d::Input::getCirclePadX()) +
+                ", Y: " + std::to_string(m3d::Input::getCirclePadY()) + "}");
 
         scr.render(); // render the screen
     }
