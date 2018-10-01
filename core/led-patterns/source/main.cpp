@@ -76,9 +76,9 @@ int main() {
     // main loop
     while (app.isRunning()) {
         // press Start to return to the homebrew menu
-        if (m3d::buttons::buttonPressed(m3d::buttons::Button::Start)) app.exit();
+        if (m3d::Input:::buttonPressed(m3d::Input:::Button::Start)) app.exit();
 
-        if (m3d::buttons::buttonPressed(m3d::buttons::Button::Up)) {
+        if (m3d::Input:::buttonPressed(m3d::Input:::Button::Up)) {
             if (selected < patterns.size() - 1) {
                 selected++;
             } else {
@@ -86,7 +86,7 @@ int main() {
             }
         }
 
-        if (m3d::buttons::buttonPressed(m3d::buttons::Button::Down)) {
+        if (m3d::Input:::buttonPressed(m3d::Input:::Button::Down)) {
             if (selected > 0) {
                 selected--;
             } else {
@@ -94,8 +94,8 @@ int main() {
             }
         }
 
-        if (m3d::buttons::buttonPressed(m3d::buttons::Button::A)) patterns[selected].play();
-        if (m3d::buttons::buttonPressed(m3d::buttons::Button::B)) m3d::LEDPattern::stop();
+        if (m3d::Input:::buttonPressed(m3d::Input:::Button::A)) patterns[selected].play();
+        if (m3d::Input:::buttonPressed(m3d::Input:::Button::B)) m3d::LEDPattern::stop();
 
         printAt(0, 1, m3d::LEDPattern::isPlaying() ? "Playing    " : "Not playing");
         printAt(0, 2, "Press A to start playing the selected\npattern");
