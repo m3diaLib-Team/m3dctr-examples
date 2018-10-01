@@ -3,3 +3,5 @@ build/
 *.elf
 *.smdh
 debug/
+release/
+.vscode/
