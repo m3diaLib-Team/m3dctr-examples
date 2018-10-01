@@ -9,7 +9,7 @@ int main() {
     // main loop
     while (app.isRunning()) {
         // press B to return to the homebrew menu
-        if (m3d::Input:::buttonPressed(m3d::Input:::Button::B)) app.exit();
+        if (m3d::Input::buttonPressed(m3d::Input::Button::B)) app.exit();
 
         scr.drawTop(spr); // draw the sprite
         scr.render(); // render the screen

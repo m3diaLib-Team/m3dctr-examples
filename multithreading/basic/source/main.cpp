@@ -27,7 +27,7 @@ int main() {
     // main loop
     while (app.isRunning()) {
         // press B to return to the homebrew menu
-        if (m3d::Input:::buttonPressed(m3d::Input:::Button::B)) app.exit();
+        if (m3d::Input::buttonPressed(m3d::Input::Button::B)) app.exit();
     }
 
     // threads automatically join on destruction, so there's no need to call m3d::Thread::join() here

@@ -36,25 +36,25 @@ int main() {
     // main loop
     while (app.isRunning()) {
         // press B or Start to return to the homebrew menu
-        if (m3d::Input:::buttonPressed(m3d::Input:::Button::Start)) app.exit();
-        if (m3d::Input:::buttonPressed(m3d::Input:::Button::B)) app.exit();
+        if (m3d::Input::buttonPressed(m3d::Input::Button::Start)) app.exit();
+        if (m3d::Input::buttonPressed(m3d::Input::Button::B)) app.exit();
 
-        if (m3d::Input:::buttonPressed(m3d::Input:::Button::Up)) {
+        if (m3d::Input::buttonPressed(m3d::Input::Button::Up)) {
             keyboardNormal.display();
             printf("Entered text: %s\n", keyboardNormal.getLastInput().c_str());
         }
 
-        if (m3d::Input:::buttonPressed(m3d::Input:::Button::Left)) {
+        if (m3d::Input::buttonPressed(m3d::Input::Button::Left)) {
             keyboardNumpad.display();
             printf("Entered text: %s\n", keyboardNumpad.getLastInput().c_str());
         }
 
-        if (m3d::Input:::buttonPressed(m3d::Input:::Button::Right)) {
+        if (m3d::Input::buttonPressed(m3d::Input::Button::Right)) {
             keyboardValidating.display();
             printf("Entered text: %s\n", keyboardValidating.getLastInput().c_str());
         }
 
-        if (m3d::Input:::buttonPressed(m3d::Input:::Button::Down)) {
+        if (m3d::Input::buttonPressed(m3d::Input::Button::Down)) {
             passwordKeyboard.display();
             printf("Entered text: %s\n", passwordKeyboard.getLastInput().c_str());
         }

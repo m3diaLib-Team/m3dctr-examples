@@ -19,9 +19,9 @@ int main() {
     // main loop
     while (app.isRunning()) {
         // press B to return to the homebrew menu
-        if (m3d::Input:::buttonPressed(m3d::Input:::Button::B)) app.exit();
+        if (m3d::Input::buttonPressed(m3d::Input::Button::B)) app.exit();
 
-        if (m3d::Input:::buttonPressed(m3d::Input:::Button::A)) {
+        if (m3d::Input::buttonPressed(m3d::Input::Button::A)) {
             if (cube.isTextureBound()) {
                 cube.unbindTexture();
             } else {

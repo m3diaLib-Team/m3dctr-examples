@@ -21,10 +21,10 @@ int main() {
     // main loop
     while (app.isRunning()) {
         // press B to return to the homebrew menu
-        if (m3d::Input:::buttonPressed(m3d::Input:::Button::B)) app.exit();
+        if (m3d::Input::buttonPressed(m3d::Input::Button::B)) app.exit();
 
         // press A to toggle the playback
-        if (m3d::Input:::buttonPressed(m3d::Input:::Button::A)) music.togglePlay();
+        if (m3d::Input::buttonPressed(m3d::Input::Button::A)) music.togglePlay();
     }
 
     // the music automatically stops on destruction, so we don't have to call stop() here
