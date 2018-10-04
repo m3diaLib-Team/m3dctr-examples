@@ -5,3 +5,8 @@ build/
 debug/
 release/
 .vscode/
+misc/
+
+# future releases
+console/
+app_launch/
