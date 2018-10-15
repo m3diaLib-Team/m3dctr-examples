@@ -45,7 +45,8 @@ int main() {
             cons << cons.position(1, 2)
                  << std::to_string(client.getProgressSize()) << " Bytes downloaded"
                  << cons.Endl
-                 << std::to_string(client.getTotalSize()) << " Bytes total";
+                 << std::to_string(client.getTotalSize()) << " Bytes total"
+                 << cons.Endl;
         }
     }
 
