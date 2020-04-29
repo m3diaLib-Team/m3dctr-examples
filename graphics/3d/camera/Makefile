@@ -38,9 +38,9 @@ export VERSTRING	:=	v$(VER_MAJOR).$(VER_MINOR).$(VER_PATCH)-$(VER_REVISION)
 #---------------------------------------------------------------------------------
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
-SOURCES		:=	$(sort $(dir $(wildcard source/*/)))
+SOURCES		:=	$(sort $(dir $(wildcard source/*)))
 DATA		:=	data
-INCLUDES	:= $(sort $(dir $(wildcard includes/*/)))
+INCLUDES	:= $(sort $(dir $(wildcard includes/*)))
 
 APP_TITLE		:=	Your awesome Homebrew $(VERSTRING)
 APP_DESCRIPTION	:=	Some awesome software that does something
