@@ -1,7 +1,9 @@
 #---------------------------------------------------------------------------------
 .SUFFIXES:
 #---------------------------------------------------------------------------------
-
+ifeq ($(strip $(DEVKITPRO)),)
+$(error "Please set DEVKITPRO in your environment. export DEVKITPRO=<path to>devkitPro")
+endif
 ifeq ($(strip $(DEVKITARM)),)
 $(error "Please set DEVKITARM in your environment. export DEVKITARM=<path to>devkitARM")
 endif
@@ -40,6 +42,13 @@ SOURCES		:=	$(sort $(dir $(wildcard source/*)))
 DATA		:=	data
 INCLUDES	:= $(sort $(dir $(wildcard includes/*)))
 
+# --------------------------------------------------------------------------------
+# uncomment these for romfs support
+# --------------------------------------------------------------------------------
+GRAPHICS	:=	assets/gfx
+ROMFS		:=	assets
+GFXBUILD	:=	$(ROMFS)/gfx
+
 APP_TITLE		:=	Your awesome Homebrew $(VERSTRING)
 APP_DESCRIPTION	:=	Some awesome software that does something
 APP_AUTHOR		:=	You
@@ -60,13 +69,14 @@ CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++11
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=3dsx.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS	:= -lm3dia -lcitro2d -lcitro3d -lctru
+LIBS	:= -lm3dia -lcitro2d -lcitro3d -lctru -lpng -lm -lz
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
 # include and lib
 #---------------------------------------------------------------------------------
 LIBDIRS	:= $(PORTLIBS) $(CTRULIB)
+
 
 #---------------------------------------------------------------------------------
 # no real need to edit anything past this point unless you need to add additional
@@ -182,7 +192,13 @@ endif
 #---------------------------------------------------------------------------------
 clean:
 	@echo clean ...
-	@rm -fr $(BUILD) $(TARGET).3dsx $(OUTPUT).smdh $(TARGET).elf
+	@rm -fr $(BUILD) $(TARGET).3dsx $(OUTPUT).smdh $(TARGET).elf $(GFXBUILD)/*.t3x
+
+#---------------------------------------------------------------------------------
+$(GFXBUILD)/%.t3x	$(BUILD)/%.h	:	%.t3s
+#---------------------------------------------------------------------------------
+	@echo $(notdir $<)
+	@tex3ds -i $< -H $(BUILD)/$*.h -d $(DEPSDIR)/$*.d -o $(GFXBUILD)/$*.t3x
 
 #---------------------------------------------------------------------------------
 else
@@ -200,6 +216,14 @@ $(OUTPUT).elf	:	$(OFILES)
 # you need a rule like this for each extension you use as binary data
 #---------------------------------------------------------------------------------
 %.bin.o	%_bin.h :	%.bin
+#---------------------------------------------------------------------------------
+	@echo $(notdir $<)
+	@$(bin2o)
+
+#---------------------------------------------------------------------------------
+.PRECIOUS	:	%.t3x
+#---------------------------------------------------------------------------------
+%.t3x.o	%_t3x.h :	%.t3x
 #---------------------------------------------------------------------------------
 	@echo $(notdir $<)
 	@$(bin2o)
@@ -229,6 +253,12 @@ endef
 %.shbin.o %_shbin.h : %.shlist
 	@echo $(notdir $<)
 	@$(call shader-as,$(foreach file,$(shell cat $<),$(dir $<)$(file)))
+
+#---------------------------------------------------------------------------------
+%.t3x	%.h	:	%.t3s
+#---------------------------------------------------------------------------------
+	@echo $(notdir $<)
+	@tex3ds -i $< -H $*.h -d $*.d -o $*.t3x
 
 -include $(DEPSDIR)/*.d
 
