@@ -1,32 +1,12 @@
 #include <m3dia.hpp>
+#include <m3d/graphics/screen.hpp>
 #include "vshader_shbin.h"
 
 static DVLB_s* vshader_dvlb;
 static shaderProgram_s program;
-// static int uLoc_projection, uLoc_modelView;
-// static C3D_Mtx projection;
-// static C3D_Light light;
 
-static float angleX = 0.0, angleY = 0.0;
-
-bool toonShade(){
+bool bindShader(){
     C3D_BindProgram(&program);
-    // C3D_FVec objPos   = FVec4_New(0.0f, 0.0f, -3.0f, 1.0f);
-    // C3D_FVec lightPos = FVec4_New(0.0f, 0.0f, -0.5f, 1.0f);
-
-    // // Calculate the modelView matrix
-    // C3D_Mtx modelView;
-    // Mtx_Identity(&modelView);
-    // Mtx_Translate(&modelView, objPos.x, objPos.y, objPos.z, true);
-    // Mtx_RotateX(&modelView, C3D_Angle(sinf(angleX)/4), true);
-    // Mtx_RotateY(&modelView, C3D_Angle(angleY), true);
-    // Mtx_Translate(&modelView, 0.0f, -0.5f, 0.f, true);
-
-    // C3D_LightPosition(&light, &lightPos);
-
-    // // Update the uniforms
-    // C3D_FVUnifMtx4x4(GPU_VERTEX_SHADER, uLoc_projection, &projection);
-    // C3D_FVUnifMtx4x4(GPU_VERTEX_SHADER, uLoc_modelView,  &modelView);
     return true;
 }
 
@@ -59,9 +39,9 @@ int main() {
     vshader_dvlb = DVLB_ParseFile((u32*)vshader_shbin, vshader_shbin_size);
     shaderProgramInit(&program);
 	shaderProgramSetVsh(&program, &vshader_dvlb->DVLE[0]);
-    // Get the location of the uniforms
-	uLoc_projection   = shaderInstanceGetUniformLocation(program.vertexShader, "projection");
-	uLoc_modelView    = shaderInstanceGetUniformLocation(program.vertexShader, "modelView");
+
+    // Set the background to a blue colour
+    screen.setClearColor(m3d::Color(104, 176, 216));
 
     printf("Press A to toggle the texture");
 
@@ -79,7 +59,7 @@ int main() {
             }
         }
         // Draw the teapot to the top screen
-        screen.drawTop(teapot, toonShade, m3d::RenderContext::Mode::Spatial);
+        screen.drawTop(teapot, bindShader, m3d::RenderContext::Mode::Spatial);
         // Render the screen
         screen.render();
 
